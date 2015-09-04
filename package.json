@@ -1,0 +1,36 @@
+{
+  "name": "harken",
+  "version": "1.0.0",
+  "description": "a simple event library",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ansble/harken.git"
+  },
+  "keywords": [
+    "events",
+    "eda",
+    "universal"
+  ],
+  "author": "Daniel Sellers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ansble/harken/issues"
+  },
+  "homepage": "https://github.com/ansble/harken",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "chalk": "^1.1.1",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-istanbul": "^0.10.0",
+    "gulp-mocha": "^2.1.3",
+    "minimist": "^1.2.0"
+  },
+  "dependencies": {
+    "event-state": "^0.3.5"
+  }
+}
