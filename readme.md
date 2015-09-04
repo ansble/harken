@@ -127,4 +127,4 @@ This is a convenience function for `harken.off('some-event')` which is already p
     //do something here when all three events have triggered
   });
 ```
-Harken uses (https://www.npmjs.com/package/event-state)[event-state] to provide stateful eventing. Above is a simple example but you probably want to read the documentation on `event-state` if you are going to use this extensively. It's API is pretty simple.
+Harken uses [event-state](https://www.npmjs.com/package/event-state) to provide stateful eventing. Above is a simple example but you probably want to read the documentation on `event-state` if you are going to use this extensively. It's API is pretty simple.
