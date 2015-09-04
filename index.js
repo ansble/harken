@@ -121,7 +121,7 @@ var eventStore = {}
         , removeAllListeners: function (eventNameIn) {
             'use strict';
 
-            this.removeListener(eventNameIn);
+            this.off(eventNameIn);
         }
 
         , off:  function(eventNameIn, handlerIn, onceIn, scopeIn){
