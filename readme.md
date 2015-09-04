@@ -1,6 +1,6 @@
 # Harken!
 Harken is a drop in replacement for the built in eventemitter in nodejs/iojs with a few extre nice pieces. It also works in clients because it is pretty much just simple javascript. So now you can take the node event goodness and have it everywhere.
-
+[ ![Codeship Status for ansble/harken](https://codeship.com/projects/f07390c0-352f-0133-3b06-06da35d24f74/status?branch=master)](https://codeship.com/projects/100700)
 ## API
 
 This is how you use this thing.
