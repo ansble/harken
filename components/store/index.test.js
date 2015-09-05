@@ -4,7 +4,7 @@ var assert = require('chai').assert
 describe('store::tests', function () {
     'use strict';
 
-    it('should export an object function', function () {
+    it('should export an object', function () {
         assert.isObject(subject);
     });
 });
