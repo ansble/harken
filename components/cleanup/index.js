@@ -6,7 +6,7 @@ var eventStore = require('../store')
 
             Object.keys(eventStore).forEach(function (event) {
                 eventStore[event].forEach(function (item) {
-                    if (item.created + 120000 <= new Date()) {
+                    if (item.once && item.created.getTime() + 1200000 <= new Date().getTime()) {
                         off({
                             eventName: event
                             , scope: item.scope
