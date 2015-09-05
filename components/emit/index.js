@@ -10,7 +10,6 @@ var eventStore = require('../store')
         //emit the event
         if (typeof eventStack !== 'undefined') {
             eventStack.forEach(function (listener) {
-
                 listener.call.apply(listener.scope,[eventDataIn]);
 
                 if (listener.once) {
