@@ -41,12 +41,12 @@ gulp.task('default', function(){
 
 gulp.task('test', function(){
 	'use strict';
-  return gulp.src(['./utils/**/*.js', '!./utils/**/*_test.js', './routes/**/*.js', '!./routes/**/*_test.js', '*.js', '!*_test.js', '!gulpfile.js'])
+  return gulp.src(['./components/**/*.js', '!./components/**/*.test.js', '*.js', '!*.test.js', '!gulpfile.js'])
       // Right there
       .pipe(istanbul({includeUntested: true}))
       .pipe(istanbul.hookRequire())
       .on('finish', function () {
-         gulp.src(['**/**_test.js', '!node_modules/**/*'], {read: false})
+         gulp.src(['**/**.test.js', '!node_modules/**/*'], {read: false})
             .pipe(mocha({reporter: 'spec'}))
             .pipe(istanbul.writeReports());
       });
