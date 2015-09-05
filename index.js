@@ -1,20 +1,20 @@
 var eventStore = {}
     , emitter = {
-        emit: function(eventNameIn, eventDataIn){
+        emit: function (eventNameIn, eventDataIn) {
             'use strict';
 
             var eventStack = eventStore[eventNameIn];
 
             //emit the event
-            if(typeof eventStack !== 'undefined'){
+            if (typeof eventStack !== 'undefined') {
                 eventStack.forEach(function (listener) {
-                    if(typeof listener.scope !== 'undefined'){
+                    if (typeof listener.scope !== 'undefined') {
                         listener.call.apply(listener.scope,[eventDataIn]);
-                    }else{
+                    } else {
                         listener.call(eventDataIn);
                     }
 
-                    if(listener.once){
+                    if (listener.once) {
                         emitter.off({
                             eventName: eventNameIn
                             , scope: listener.scope
@@ -33,13 +33,13 @@ var eventStore = {}
 
             Object.keys(eventStore).forEach(function (event) {
                 eventStore[event].forEach(function (item) {
-                    if(item.created + 120000 <= new Date()){
+                    if (item.created + 120000 <= new Date()) {
                         emitter.off({
-                                eventName: event
-                                , scope: item.scope
-                                , handler: item.call
-                                , once: item.once
-                            });
+                            eventName: event
+                            , scope: item.scope
+                            , handler: item.call
+                            , once: item.once
+                        });
                     }
                 });
             });
@@ -65,7 +65,7 @@ var eventStore = {}
                 //variables for later
                 , eventStack = eventStore[eventName];
 
-            if(typeof eventNameIn === 'object'){
+            if (typeof eventNameIn === 'object') {
                 //we have an object to split up dude
                 eventName = eventNameIn.eventName;
                 handler = eventNameIn.handler;
@@ -73,7 +73,7 @@ var eventStore = {}
                 once = (typeof eventNameIn.once !== 'undefined') ? eventNameIn.once : false;
             }
 
-            if(typeof eventStack !== 'undefined'){
+            if (typeof eventStack !== 'undefined') {
                 //already exists check to see if the function is already bound
                 eventStack.some(function (listener) {
                     if(listener.call.toString() === handler.toString() && listener.once === false){
@@ -82,33 +82,33 @@ var eventStore = {}
                     }
                 });
 
-                if(newCheck && typeof scope !== 'undefined'){
+                if (newCheck && typeof scope !== 'undefined') {
                     eventStack.push({once: once, call: handler, scope: scope, created: new Date()});
-                }else if(newCheck){
+                } else if(newCheck) {
                     eventStack.push({once: once, call:handler, created: new Date()});
                 }
 
             } else {
                 //new event
                 eventStore[eventName] = []; //use an array to store functions
-                if(typeof scope !== 'undefined'){
+                if (typeof scope !== 'undefined') {
                     eventStore[eventName].push({once: once, call: handler, scope: scope, created: new Date()});
-                }else{
+                } else {
                     eventStore[eventName].push({once: once, call: handler, created: new Date()});
                 }
             }
         }
 
-        , once: function(eventNameIn, handlerIn, scopeIn){
+        , once: function (eventNameIn, handlerIn, scopeIn) {
             'use strict';
 
             //same thing as .listen() but is only triggered once
             var that = this;
 
-            if(typeof eventNameIn === 'object'){
+            if (typeof eventNameIn === 'object') {
                 eventNameIn.once = true;
                 that.on(eventNameIn);
-            }else{
+            } else {
                 that.on({
                     eventName: eventNameIn
                     , handler: handlerIn
@@ -124,7 +124,7 @@ var eventStore = {}
             this.off(eventNameIn);
         }
 
-        , off:  function(eventNameIn, handlerIn, onceIn, scopeIn){
+        , off:  function (eventNameIn, handlerIn, onceIn, scopeIn) {
             'use strict';
             //localize variables
             var eventName = eventNameIn
@@ -132,7 +132,7 @@ var eventStore = {}
                 , once = onceIn
                 , scope = scopeIn;
 
-            if(typeof eventNameIn === 'object'){
+            if (typeof eventNameIn === 'object') {
                 // passed in a collection of params instead of params
                 eventName = eventNameIn.eventName;
                 handler = eventNameIn.handler;
@@ -140,22 +140,22 @@ var eventStore = {}
                 scope = eventNameIn.scope;
             }
 
-            if(typeof eventStore[eventName] === 'undefined'){
+            if (typeof eventStore[eventName] === 'undefined') {
                 //if there is no event with that name... return nothing
                 return;
             }
 
-            if(typeof handler !== 'undefined'){
+            if (typeof handler !== 'undefined') {
                 //there is an event that matches... proceed
                 eventStore[eventName] = eventStore[eventName].filter(function(listener){
                     var isMatch = (handler.toString() === listener.call.toString());
 
                     //function is passed in
-                    if(typeof scope !== 'undefined'){
+                    if (typeof scope !== 'undefined') {
                         //scope is passed in...
                         isMatch = !!(isMatch && scope);
 
-                        if(typeof once === 'boolean'){
+                        if (typeof once === 'boolean') {
                             // function + scope + once provides the match
                             isMatch = !!(isMatch && once === listener.once);
                         }
