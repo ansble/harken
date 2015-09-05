@@ -130,7 +130,6 @@ describe('Event Tests', function () {
 
             emitter.emit('some-event');
             emitter.emit('some-event');
-
             emitter.emit('some-other-event');
         });
 
