@@ -1,11 +1,13 @@
 var on = require('./components/on')
-    , off = require('./components/off')
+    , off = require('./components/off');
 
-    , emitter = {
+module.exports = {
         emit: require('./components/emit')
 
         , cleanup: require('./components/cleanup')
         , listeners: require('./components/listeners')
+
+        , required: require('event-state')
 
         , on: on
         , addListener: on
@@ -33,8 +35,4 @@ var on = require('./components/on')
 
             off(eventNameIn);
         }
-
-        , required: require('event-state')
     };
-
-module.exports = emitter;
