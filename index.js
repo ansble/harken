@@ -1,4 +1,4 @@
-var eventStore = {}
+var eventStore = require('./components/store')
     , emitter = {
         emit: function (eventNameIn, eventDataIn) {
             'use strict';
@@ -45,64 +45,13 @@ var eventStore = {}
             });
         }
 
-        , listeners: function (eventNameIn) {
-            'use strict';
-
-            return eventStore[eventNameIn];
-        }
-
-        , on: function(eventNameIn, handlerIn, scopeIn, onceIn){
-            'use strict';
-
-            var newCheck = true
-
-                //attribute holders and such
-                , eventName = eventNameIn
-                , handler = handlerIn
-                , scope = scopeIn
-                , once = onceIn
-
-                //variables for later
-                , eventStack = eventStore[eventName];
-
-            if (typeof eventNameIn === 'object') {
-                //we have an object to split up dude
-                eventName = eventNameIn.eventName;
-                handler = eventNameIn.handler;
-                scope = eventNameIn.scope;
-                once = (typeof eventNameIn.once !== 'undefined') ? eventNameIn.once : false;
-            }
-
-            if (typeof eventStack !== 'undefined') {
-                //already exists check to see if the function is already bound
-                eventStack.some(function (listener) {
-                    if(listener.call.toString() === handler.toString() && listener.once === false){
-                        newCheck = false;
-                        return true;
-                    }
-                });
-
-                if (newCheck && typeof scope !== 'undefined') {
-                    eventStack.push({once: once, call: handler, scope: scope, created: new Date()});
-                } else if(newCheck) {
-                    eventStack.push({once: once, call:handler, created: new Date()});
-                }
-
-            } else {
-                //new event
-                eventStore[eventName] = []; //use an array to store functions
-                if (typeof scope !== 'undefined') {
-                    eventStore[eventName].push({once: once, call: handler, scope: scope, created: new Date()});
-                } else {
-                    eventStore[eventName].push({once: once, call: handler, created: new Date()});
-                }
-            }
-        }
+        , listeners: require('./components/listeners')
+        , on: require('./components/on')
 
         , once: function (eventNameIn, handlerIn, scopeIn) {
             'use strict';
 
-            //same thing as .listen() but is only triggered once
+            //same thing as .on() but is only triggered once
             var that = this;
 
             if (typeof eventNameIn === 'object') {
