@@ -16,35 +16,32 @@ var eventStore = require('../store')
                 scope = eventNameIn.scope;
             }
 
-            if (typeof eventStore[eventName] === 'undefined') {
-                //if there is no event with that name... return nothing
-                return;
-            }
+            if (typeof eventStore[eventName] !== 'undefined') {
+                if (typeof handler !== 'undefined') {
+                    //there is an event that matches... proceed
+                    eventStore[eventName] = eventStore[eventName].filter(function(listener){
+                        var isMatch = (handler.toString() === listener.call.toString());
 
-            if (typeof handler !== 'undefined') {
-                //there is an event that matches... proceed
-                eventStore[eventName] = eventStore[eventName].filter(function(listener){
-                    var isMatch = (handler.toString() === listener.call.toString());
+                        //function is passed in
+                        if (typeof scope !== 'undefined') {
+                            //scope is passed in...
+                            isMatch = !!(isMatch && scope);
 
-                    //function is passed in
-                    if (typeof scope !== 'undefined') {
-                        //scope is passed in...
-                        isMatch = !!(isMatch && scope);
-
-                        if (typeof once === 'boolean') {
-                            // function + scope + once provides the match
-                            isMatch = !!(isMatch && once === listener.once);
+                            if (typeof once === 'boolean') {
+                                // function + scope + once provides the match
+                                isMatch = !!(isMatch && once === listener.once);
+                            }
+                        } else if (typeof once === 'boolean'){
+                            isMatch = !!( isMatch && listener.once === once);
                         }
-                    } else if (typeof once === 'boolean'){
-                        isMatch = !!( isMatch && listener.once === once);
-                    }
 
-                    return !isMatch;
-                });
+                        return !isMatch;
+                    });
 
-            } else {
-                //no function unbind everything by resetting
-                eventStore[eventName] = [];
+                } else {
+                    //no function unbind everything by resetting
+                    eventStore[eventName] = [];
+                }
             }
         };
 
