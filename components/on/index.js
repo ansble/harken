@@ -1,39 +1,18 @@
 var eventStore = require('../store')
     , emptyScope = {}
-    , compare = function (item, listenerItem) {
-        'use strict';
-        var same = true
-            , type = typeof item
-            , listenerType = typeof listenerItem;
+    , compare = require('../compare')
 
-        if (type !== 'undefined' && listenerType !== 'undefined') {
-            if(type === 'object'){
-                //this is scope and if the structure is the same that is
-                //  not enough. The actual object must be the same here
-                same = (item === listenerItem);
-            } else if (type === 'function') {
-                same = item.toString() === listenerItem.toString();
-            } else {
-                same = item === listenerItem;
-            }
-        }
-
-        return same;
-    }
-
-    , on = function(eventNameIn, handlerIn, scopeIn, onceIn){
+    , on = function(eventNameIn, handlerIn, scopeIn, onceIn) {
         'use strict';
 
-        var newCheck = true
+        var newCheck
+            , eventStack
 
             //attribute holders and such
             , eventName = eventNameIn
             , handler = handlerIn
             , scope = scopeIn || emptyScope
-            , once = onceIn || false
-
-            //variables for later
-            , eventStack;
+            , once = onceIn || false;
 
         if (typeof eventNameIn === 'object') {
             //we have an object to split up dude
@@ -45,16 +24,18 @@ var eventStore = require('../store')
 
         eventStack = eventStore[eventName];
 
-        if (typeof eventStack !== 'undefined') {
+        if (Array.isArray(eventStack)) {
             //already exists check to see if the function is already bound
-            eventStack.some(function (listener) {
-                if(compare(handler, listener.call) && compare(once, listener.once) && compare(scope, listener.scope)){
-                    newCheck = false;
-                    return true;
-                }
+            //  using .find here to speed up detection of matchs
+            //  .find gets returned as soon as it returns true
+            //  the downside to this decision is it returns the object and not a bool
+            //  I think the upside beats the downside of the comparison below
+            //  especially as the size of the stack grows.
+            newCheck = eventStack.find(function (listener) {
+                return  (compare(handler, listener.call) && compare(once, listener.once) && compare(scope, listener.scope));
             });
 
-            if (newCheck) {
+            if (typeof newCheck !== 'object') {
                 eventStack.push({once: once, call: handler, scope: scope, created: new Date()});
             }
 
