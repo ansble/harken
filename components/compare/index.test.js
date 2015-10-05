@@ -34,9 +34,9 @@ describe('compare::tests', function () {
         it('should be able to compare two scope objects', () => {
             var scope = {};
 
-            assert.strictEqual(true, subject(scope, scope));
-            assert.strictEqual(false, subject(scope, {}));
-            assert.strictEqual(false, subject(scope, undefined));
+            assert.strictEqual(true, subject(scope, scope), 'scope var should equale scope var');
+            assert.strictEqual(false, subject(scope, {}), 'scope var shouldn\'t equal anon object');
+            assert.strictEqual(false, subject(scope, undefined), 'scope var shouldn\'t equal undefiend');
         });
     });
 

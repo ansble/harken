@@ -21,7 +21,7 @@ var eventStore = require('../store')
                 if (typeof handler !== 'undefined') {
                     //there is an event that matches... proceed
                     eventStore[eventName] = eventStore[eventName].filter(function(listener){
-                        var isMatch = compare(handler === listener.call);
+                        var isMatch = compare(handler, listener.call);
 
                         //function is passed in
                         if (typeof scope !== 'undefined') {
@@ -33,7 +33,7 @@ var eventStore = require('../store')
                                 isMatch = !!(isMatch && compare(once, listener.once));
                             }
                         } else if (typeof once === 'boolean'){
-                            isMatch = !!( isMatch && compare(listener.once, once));
+                            isMatch = !!( isMatch && compare(once, listener.once));
                         }
 
                         return !isMatch;

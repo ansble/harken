@@ -14,6 +14,8 @@ var compare = function (item, listenerItem) {
             } else {
                 same = item === listenerItem;
             }
+        } else {
+            same = false;
         }
 
         return same;
