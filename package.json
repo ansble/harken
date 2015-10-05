@@ -1,6 +1,6 @@
 {
   "name": "harken",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a simple event library",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,6 @@
     "minimist": "^1.2.0"
   },
   "dependencies": {
-    "event-state": "^0.3.5"
+    "event-state": "^1.0.0"
   }
 }
