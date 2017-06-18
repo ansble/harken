@@ -1,29 +1,31 @@
-var eventStore = require('../store')
-    , off = require('../off')
-    , cleanup = require('../cleanup')
+'use strict';
 
-    , emit = function (eventNameIn, eventDataIn) {
-        'use strict';
+const eventStore = require('../store')
+      , off = require('../off')
+      , cleanup = require('../cleanup')
 
-        var eventStack = eventStore[eventNameIn];
+      , emit = (eventNameIn, eventDataIn) => {
+        setImmediate(() => {
+          const eventStack = eventStore[eventNameIn];
 
-        //emit the event
-        if (typeof eventStack !== 'undefined') {
-            eventStack.forEach(function (listener) {
-                listener.call.apply(listener.scope,[eventDataIn]);
+          // emit the event
+          if (typeof eventStack !== 'undefined') {
+            eventStack.forEach((listener) => {
+              listener.call.apply(listener.scope, [ eventDataIn ]);
 
-                if (listener.once) {
-                    off({
-                        eventName: eventNameIn
-                        , scope: listener.scope
-                        , handler: listener.call
-                        , once: listener.once
-                    });
-                }
+              if (listener.once) {
+                off({
+                  eventName: eventNameIn
+                  , scope: listener.scope
+                  , handler: listener.call
+                  , once: listener.once
+                });
+              }
             });
-        }
+          }
 
-        cleanup();
-    };
+          cleanup();
+        });
+      };
 
 module.exports = emit;

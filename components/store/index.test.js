@@ -1,10 +1,12 @@
-var assert = require('chai').assert
-    , subject = require('./index');
+/* eslint-env node, mocha */
+'use strict';
 
-describe('store::tests', function () {
-    'use strict';
+const assert = require('chai').assert
+      , subject = require('./index');
 
-    it('should export an object', function () {
-        assert.isObject(subject);
-    });
+describe('store::tests', () => {
+
+  it('should export an object', () => {
+    assert.isObject(subject);
+  });
 });
