@@ -1,7 +1,6 @@
-var eventStore = require('../store');
+'use strict';
+const eventStore = require('../store');
 
-module.exports = function (eventName) {
-    'use strict';
-
-    return eventStore[eventName];
+module.exports = (eventName) => {
+  return eventStore[eventName];
 };

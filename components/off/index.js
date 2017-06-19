@@ -1,49 +1,49 @@
-var eventStore = require('../store')
-    , compare = require('../compare')
+'use strict';
 
-    , off = function (eventNameIn, handlerIn, onceIn, scopeIn) {
-            'use strict';
-            //localize variables
-            var eventName = eventNameIn
-                , handler = handlerIn
-                , once = onceIn
-                , scope = scopeIn;
+const eventStore = require('../store')
+      , compare = require('../compare')
 
-            if (typeof eventNameIn === 'object') {
-                // passed in a collection of params instead of params
-                eventName = eventNameIn.eventName;
-                handler = eventNameIn.handler;
-                once = eventNameIn.once;
-                scope = eventNameIn.scope;
-            }
+      , off = (eventNameIn, handlerIn, onceIn, scopeIn) => {
+        // localize variables
+        let eventName = eventNameIn
+            , handler = handlerIn
+            , once = onceIn
+            , scope = scopeIn;
 
-            if (Array.isArray(eventStore[eventName])) {
-                if (typeof handler !== 'undefined') {
-                    //there is an event that matches... proceed
-                    eventStore[eventName] = eventStore[eventName].filter(function(listener){
-                        var isMatch = compare(handler, listener.call);
+        if (typeof eventNameIn === 'object') {
+          // passed in a collection of params instead of params
+          eventName = eventNameIn.eventName;
+          handler = eventNameIn.handler;
+          once = eventNameIn.once;
+          scope = eventNameIn.scope;
+        }
 
-                        //function is passed in
-                        if (typeof scope !== 'undefined') {
-                            //scope is passed in...
-                            isMatch = !!(isMatch && scope);
+        if (Array.isArray(eventStore[eventName])) {
+          if (typeof handler === 'undefined') {
+            // no function unbind everything by resetting
+            eventStore[eventName] = [];
+          } else {
+            // there is an event that matches... proceed
+            eventStore[eventName] = eventStore[eventName].filter((listener) => {
+              let isMatch = compare(handler, listener.call);
 
-                            if (typeof once === 'boolean') {
-                                // function + scope + once provides the match
-                                isMatch = !!(isMatch && compare(once, listener.once));
-                            }
-                        } else if (typeof once === 'boolean'){
-                            isMatch = !!( isMatch && compare(once, listener.once));
-                        }
+              // function is passed in
+              if (typeof scope !== 'undefined') {
+                // scope is passed in...
+                isMatch = !!(isMatch && scope);
 
-                        return !isMatch;
-                    });
-
-                } else {
-                    //no function unbind everything by resetting
-                    eventStore[eventName] = [];
+                if (typeof once === 'boolean') {
+                  // function + scope + once provides the match
+                  isMatch = !!(isMatch && compare(once, listener.once));
                 }
-            }
-        };
+              } else if (typeof once === 'boolean') {
+                isMatch = !!(isMatch && compare(once, listener.once));
+              }
+
+              return !isMatch;
+            });
+          }
+        }
+      };
 
 module.exports = off;

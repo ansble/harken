@@ -1,96 +1,98 @@
-var assert = require('chai').assert
-    , subject = require('./index')
-    , eventStore = require('../store');
+/* eslint-env node, mocha */
+'use strict';
 
-describe('on::tests', function () {
-    'use strict';
+const assert = require('chai').assert
+      , subject = require('./index')
+      , eventStore = require('../store');
 
-    it('should have  an "on" function', function () {
-        assert.isFunction(subject);
+describe('on::tests', () => {
+
+  it('should have  an "on" function', () => {
+    assert.isFunction(subject);
+  });
+
+  afterEach(() => {
+    eventStore['some-event'] = [];
+  });
+
+  it('should allow an object with named keys instead of function params', () => {
+    assert.strictEqual(eventStore['some-event'].length, 0);
+
+    subject({
+      eventName: 'some-event'
+      , handler: () => {}
+      , scope: {}
+      , once: true
     });
 
-    afterEach(function () {
-        eventStore['some-event'] = [];
+    assert.strictEqual(eventStore['some-event'].length, 1);
+  });
+
+  it('should allow an object with named keys instead of function params for just once and handler', () => {
+    assert.strictEqual(eventStore['some-event'].length, 0);
+
+    subject({
+      eventName: 'some-event'
+      , handler: () => {}
+      , once: true
     });
 
-    it('should allow an object with named keys instead of function params', function () {
-        assert.strictEqual(eventStore['some-event'].length, 0);
+    assert.strictEqual(eventStore['some-event'].length, 1);
+  });
 
-        subject({
-            eventName: 'some-event'
-            , handler: function () {}
-            , scope: {}
-            , once: true
-        });
+  it('should allow an object with named keys instead of function params for just handler', () => {
+    assert.strictEqual(eventStore['some-event'].length, 0);
 
-        assert.strictEqual(eventStore['some-event'].length, 1);
+    subject({
+      eventName: 'some-event'
+      , handler: () => {}
     });
 
-    it('should allow an object with named keys instead of function params for just once and handler', function () {
-        assert.strictEqual(eventStore['some-event'].length, 0);
+    assert.strictEqual(eventStore['some-event'].length, 1);
+  });
 
-        subject({
-            eventName: 'some-event'
-            , handler: function () {}
-            , once: true
-        });
+  it('should be able to add additional listeners to the same event', () => {
+    assert.strictEqual(eventStore['some-event'].length, 0);
 
-        assert.strictEqual(eventStore['some-event'].length, 1);
+    subject({
+      eventName: 'some-event'
+      , handler: () => {}
     });
 
-    it('should allow an object with named keys instead of function params for just handler', function () {
-        assert.strictEqual(eventStore['some-event'].length, 0);
-
-        subject({
-            eventName: 'some-event'
-            , handler: function () {}
-        });
-
-        assert.strictEqual(eventStore['some-event'].length, 1);
+    subject({
+      eventName: 'some-event'
+      , handler: function () {
+        console.log(this.some);
+      }
+      , scope: { some: true }
     });
 
-    it('should be able to add additional listeners to the same event', function () {
-        assert.strictEqual(eventStore['some-event'].length, 0);
+    subject('some-event', () => {}, { test: true });
 
-        subject({
-            eventName: 'some-event'
-            , handler: function () {}
-        });
+    assert.strictEqual(eventStore['some-event'].length, 3);
+  });
 
-        subject({
-            eventName: 'some-event'
-            , handler: function () {
-                console.log(this.some);
-            }
-            , scope: {some: true}
-        });
+  it('should not add a new listener that is indentical to an old listener', () => {
+    const scope = { test: true };
 
-        subject('some-event', function () {}, {test: true});
+    assert.strictEqual(eventStore['some-event'].length, 0);
 
-        assert.strictEqual(eventStore['some-event'].length, 3);
+    subject('some-event', () => {}, scope);
+    subject('some-event', () => {}, scope);
+    subject({
+      eventName: 'some-event'
+      , handler: () => {}
+      , scope: scope
     });
 
-    it('should not add a new listener that is indentical to an old listener', function () {
-        var scope = {test: true};
+    assert.strictEqual(eventStore['some-event'].length, 1);
 
-        assert.strictEqual(eventStore['some-event'].length, 0);
-
-        subject('some-event', function () {}, scope);
-        subject('some-event', function () {}, scope);
-        subject({
-            eventName: 'some-event'
-            , handler: function () {}
-            , scope: scope
-        });
-
-        assert.strictEqual(eventStore['some-event'].length, 1);
-
-        subject('some-event', function () {});
-        subject({
-            eventName: 'some-event'
-            , handler: function () {}
-        });
-
-        assert.strictEqual(eventStore['some-event'].length, 2);
+    subject('some-event', () => {});
+    subject({
+      eventName: 'some-event'
+      , handler: () => {}
     });
+
+    assert.strictEqual(eventStore['some-event'].length, 2);
+  });
 });

@@ -1,18 +1,20 @@
-var assert = require('chai').assert
-    , subject = require('./index')
-    , eventStore = require('../store');
+/* eslint-env node, mocha */
+'use strict';
 
-describe('listeners::tests', function () {
-    'use strict';
+const assert = require('chai').assert
+      , subject = require('./index')
+      , eventStore = require('../store');
 
-    it('should have  be a function', function () {
-        assert.isFunction(subject);
-    });
+describe('listeners::tests', () => {
 
-    it('should return an array of all listeners', function () {
-        eventStore['some-event'] = [{call: function () {}}];
+  it('should have  be a function', () => {
+    assert.isFunction(subject);
+  });
 
-        assert.isArray(subject('some-event'));
-        assert.lengthOf(subject('some-event'), 1);
-    });
+  it('should return an array of all listeners', () => {
+    eventStore['some-event'] = [ { call: function () {} } ];
+
+    assert.isArray(subject('some-event'));
+    assert.lengthOf(subject('some-event'), 1);
+  });
 });

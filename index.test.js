@@ -1,259 +1,263 @@
-var assert = require('chai').assert
-    , eventStore = require('./components/store')
-    , emitter = require('./index')
-    , test;
+/* eslint-env node, mocha */
+'use strict';
 
-describe('Event Tests', function () {
-    'use strict';
+const assert = require('chai').assert
+      , eventStore = require('./components/store')
+      , emitter = require('./index');
 
-    beforeEach(function () {
-        test = true;
+let test;
+
+describe('Event Tests', () => {
+
+  beforeEach(() => {
+    test = true;
+  });
+
+  afterEach(() => {
+    Object.keys(eventStore).forEach((key) => {
+      emitter.off(key);
+    });
+  });
+
+  describe('.addListener tests', () => {
+    it('should be the same function as .on', () => {
+      assert.strictEqual(emitter.on, emitter.addListener);
+    });
+  });
+
+  describe('.on tests', () => {
+    it('should have  an "on" function', () => {
+      assert.isFunction(emitter.on);
     });
 
-    afterEach(function () {
-        Object.keys(eventStore).forEach(function (key) {
-            emitter.off(key);
-        });
+    it('should execute the callback passed to "on" when an event is triggered', (done) => {
+      emitter.on('some-event', () => {
+        assert.strictEqual(true, true);
+        done();
+      });
+
+      emitter.emit('some-event');
     });
 
-    describe('.addListener tests', function () {
-        it('should be the same function as .on', function () {
-            assert.strictEqual(emitter.on, emitter.addListener);
-        });
+    it('should execute the callback passed to "on" when an event is triggered and recieve data', (done) => {
+      emitter.on('some-event', (data) => {
+        assert.isObject(data);
+        done();
+      });
+
+      emitter.emit('some-event', { name: 'Tom Sawyer' });
     });
 
-    describe('.on tests', function () {
-        it('should have  an "on" function', function () {
-            assert.isFunction(emitter.on);
-        });
+    it('should execute the callback passed to "on" with the scope passed in', (done) => {
+      emitter.on('some-event', function (data) {
+        // eslint-disable-next-line no-invalid-this
+        assert.strictEqual(data.name, this.name);
+        done();
+      }, { name: 'Tom Sawyer' });
 
-        it('should execute the callback passed to "on" when an event is triggered', function (done) {
-            emitter.on('some-event', function () {
-                assert.strictEqual(true, true);
-                done();
-            });
-
-            emitter.emit('some-event');
-        });
-
-        it('should execute the callback passed to "on" when an event is triggered and recieve data', function (done){
-            emitter.on('some-event', function (data) {
-                assert.isObject(data);
-                done();
-            });
-
-            emitter.emit('some-event', {name: 'Tom Sawyer'});
-        });
-
-        it('should execute the callback passed to "on" with the scope passed in', function (done){
-            emitter.on('some-event', function (data) {
-                assert.strictEqual(data.name, this.name);
-                done();
-            }, {name: 'Tom Sawyer'});
-
-            emitter.emit('some-event', {name: 'Tom Sawyer'});
-        });
-
-        it('should execute the callback passed to "on" with the scope passed only once when flagged', function (done){
-            var count = 0;
-
-            emitter.on('some-event', function () {
-                count++;
-
-            }, {}, true);
-
-            emitter.on('some-other-event', function () {
-                assert.strictEqual(count, 1);
-                done();
-            });
-
-            emitter.emit('some-event');
-            emitter.emit('some-event');
-
-            emitter.emit('some-other-event');
-        });
-
-        it('should allow an object with named keys instead of function params', function (done) {
-            var count = 0;
-
-            emitter.on({
-                eventName: 'some-event'
-                , handler: function () {
-                    count++;
-
-                }
-                , scope: {}
-                , once: true
-            });
-
-            emitter.on('some-other-event', function () {
-                assert.strictEqual(count, 1);
-                done();
-            });
-
-            emitter.emit('some-event');
-            emitter.emit('some-event');
-
-            emitter.emit('some-other-event');
-        });
-
-        it('should allow an object with named keys instead of function params for just once and handler', function (done) {
-            var count = 0;
-
-            emitter.on({
-                eventName: 'some-event'
-                , handler: function () {
-                    count++;
-
-                }
-                , once: true
-            });
-
-            emitter.on('some-other-event', function () {
-                assert.strictEqual(count, 1);
-                done();
-            });
-
-            emitter.emit('some-event');
-            emitter.emit('some-event');
-
-            emitter.emit('some-other-event');
-        });
-
-        it('should allow an object with named keys instead of function params for just handler', function (done) {
-            var count = 0;
-
-            emitter.on({
-                eventName: 'some-event'
-                , handler: function () {
-                    count++;
-
-                }
-            });
-
-            emitter.on('some-other-event', function () {
-                assert.strictEqual(count, 2);
-                done();
-            });
-
-            emitter.emit('some-event');
-            emitter.emit('some-event');
-            emitter.emit('some-other-event');
-        });
+      emitter.emit('some-event', { name: 'Tom Sawyer' });
     });
 
-    describe('.once tests', function () {
-        it('should have  a "once" function', function () {
-            assert.isFunction(emitter.once);
-        });
+    it('should execute the callback passed to "on" with the scope passed only once when flagged', (done) => {
+      let count = 0;
 
-        it('should add an item to the eventStore with once set when called with positional params', function () {
-            emitter.once('test', function () {}, {});
+      emitter.on('some-event', () => {
+        count++;
 
-            assert.strictEqual(eventStore.test.length, 1);
-            assert.strictEqual(eventStore.test[0].once, true);
-        });
+      }, {}, true);
 
-        it('should add an item to the eventStore with once set when called with object hash', function () {
-            emitter.once({
-                eventName: 'tests'
-                , call: function () {}
-                , scope: {}
-            });
+      emitter.on('some-other-event', () => {
+        assert.strictEqual(count, 1);
+        done();
+      });
 
-            assert.strictEqual(eventStore.tests.length, 1);
-            assert.strictEqual(eventStore.tests[0].once, true);
-        });
+      emitter.emit('some-event');
+      emitter.emit('some-event');
+
+      emitter.emit('some-other-event');
     });
 
-    it('should have  an "removeListener" function', function () {
-        assert.isFunction(emitter.removeListener);
+    it('should allow an object with named keys instead of function params', (done) => {
+      let count = 0;
+
+      emitter.on({
+        eventName: 'some-event'
+        , handler: function () {
+          count++;
+
+        }
+        , scope: {}
+        , once: true
+      });
+
+      emitter.on('some-other-event', () => {
+        assert.strictEqual(count, 1);
+        done();
+      });
+
+      emitter.emit('some-event');
+      emitter.emit('some-event');
+
+      emitter.emit('some-other-event');
     });
 
-    it('should have  an "removeAllListeners" function', function () {
-        assert.isFunction(emitter.removeAllListeners);
+    it('should allow an object with named keys instead of function params for just once and handler', (done) => {
+      let count = 0;
+
+      emitter.on({
+        eventName: 'some-event'
+        , handler: function () {
+          count++;
+
+        }
+        , once: true
+      });
+
+      emitter.on('some-other-event', () => {
+        assert.strictEqual(count, 1);
+        done();
+      });
+
+      emitter.emit('some-event');
+      emitter.emit('some-event');
+
+      emitter.emit('some-other-event');
     });
 
-    it('should have  an "emit" function', function () {
-        assert.isFunction(emitter.emit);
+    it('should allow an object with named keys instead of function params for just handler', (done) => {
+      let count = 0;
+
+      emitter.on({
+        eventName: 'some-event'
+        , handler: function () {
+          count++;
+
+        }
+      });
+
+      emitter.on('some-other-event', () => {
+        assert.strictEqual(count, 2);
+        done();
+      });
+
+      emitter.emit('some-event');
+      emitter.emit('some-event');
+      emitter.emit('some-other-event');
+    });
+  });
+
+  describe('.once tests', () => {
+    it('should have  a "once" function', () => {
+      assert.isFunction(emitter.once);
     });
 
-    describe('listeners function tests', function () {
-        it('should have  an "listeners" function', function () {
-            assert.isFunction(emitter.listeners);
-        });
+    it('should add an item to the eventStore with once set when called with positional params', () => {
+      emitter.once('test', () => {}, {});
 
-        it('should return an array of all listeners', function () {
-            emitter.on('some-event', function () {
-                test = false;
-            });
-
-            assert.isArray(emitter.listeners('some-event'));
-            assert.lengthOf(emitter.listeners('some-event'), 1);
-        });
+      assert.strictEqual(eventStore.test.length, 1);
+      assert.strictEqual(eventStore.test[0].once, true);
     });
 
-    it('should have  an "addListener" function', function () {
-        assert.isFunction(emitter.addListener);
+    it('should add an item to the eventStore with once set when called with object hash', () => {
+      emitter.once({
+        eventName: 'tests'
+        , call: function () {}
+        , scope: {}
+      });
+
+      assert.strictEqual(eventStore.tests.length, 1);
+      assert.strictEqual(eventStore.tests[0].once, true);
+    });
+  });
+
+  it('should have  an "removeListener" function', () => {
+    assert.isFunction(emitter.removeListener);
+  });
+
+  it('should have  an "removeAllListeners" function', () => {
+    assert.isFunction(emitter.removeAllListeners);
+  });
+
+  it('should have  an "emit" function', () => {
+    assert.isFunction(emitter.emit);
+  });
+
+  describe('listeners function tests', () => {
+    it('should have  an "listeners" function', () => {
+      assert.isFunction(emitter.listeners);
     });
 
-    it('should have  a "required" function', function () {
-        assert.isFunction(emitter.required);
+    it('should return an array of all listeners', () => {
+      emitter.on('some-event', () => {
+        test = false;
+      });
+
+      assert.isArray(emitter.listeners('some-event'));
+      assert.lengthOf(emitter.listeners('some-event'), 1);
+    });
+  });
+
+  it('should have  an "addListener" function', () => {
+    assert.isFunction(emitter.addListener);
+  });
+
+  it('should have  a "required" function', () => {
+    assert.isFunction(emitter.required);
+  });
+
+  describe('.off tests', () => {
+    it('should have  an "off" function', () => {
+      assert.isFunction(emitter.off);
     });
 
-    describe('.off tests', function () {
-        it('should have  an "off" function', function () {
-            assert.isFunction(emitter.off);
-        });
+    it('should eliminate all listeners to an event when called without function', (done) => {
+      emitter.on('some-event', () => {
+        test = false;
+      });
 
-        it('should eliminate all listeners to an event when called without function', function (done) {
-            emitter.on('some-event', function () {
-                test = false;
-            });
+      emitter.off('some-event');
 
-            emitter.off('some-event');
+      emitter.emit('some-event');
 
-            emitter.emit('some-event');
-
-            setTimeout(function () {
-                assert.strictEqual(test, true);
-                done();
-            }, 1);
-        });
-
+      setTimeout(() => {
+        assert.strictEqual(test, true);
+        done();
+      }, 1);
     });
 
-    describe('.removeListener tests', function () {
-        it('should be the same function as .off', function () {
-            assert.strictEqual(emitter.off, emitter.removeListener);
-        });
+  });
+
+  describe('.removeListener tests', () => {
+    it('should be the same function as .off', () => {
+      assert.strictEqual(emitter.off, emitter.removeListener);
+    });
+  });
+
+  describe('RemoveAllListeners tests', () => {
+    it('should have  a "removeAllListeners" function', () => {
+      assert.isFunction(emitter.removeAllListeners);
     });
 
-    describe('RemoveAllListeners tests', function () {
-        it('should have  a "removeAllListeners" function', function () {
-            assert.isFunction(emitter.removeAllListeners);
-        });
+    it('should eliminate all listeners to an event when called', (done) => {
+      test = true;
 
-        it('should eliminate all listeners to an event when called', function (done) {
-            test = true;
+      emitter.on('some-event', () => {
+        test = false;
+      });
 
-            emitter.on('some-event', function () {
-                test = false;
-            });
+      emitter.on('some-event', () => {
+        test = !!test;
+      });
 
-            emitter.on('some-event', function () {
-                test = !!test;
-            });
+      emitter.removeAllListeners('some-event');
 
-            emitter.removeAllListeners('some-event');
+      emitter.emit('some-event');
 
-            emitter.emit('some-event');
-
-            setTimeout(function () {
-                assert.strictEqual(test, true);
-                done();
-            }, 0);
-        });
-
+      setTimeout(() => {
+        assert.strictEqual(test, true);
+        done();
+      }, 0);
     });
+
+  });
 });

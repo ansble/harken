@@ -1,10 +1,14 @@
 {
   "name": "harken",
-  "version": "1.0.5",
+  "version": "1.1.1",
   "description": "a simple event library",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "start": "node app.js",
+    "test": "npm run lint && istanbul cover _mocha -- *.test.js bin/*.test.js components/**/*.test.js",
+    "codeship": "npm test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "lint": "bin/lint.js",
+    "release": "npm test && echo ' => releasing' && bin/release.js"
   },
   "repository": {
     "type": "git",
@@ -21,14 +25,17 @@
     "url": "https://github.com/ansble/harken/issues"
   },
   "homepage": "https://github.com/ansble/harken",
+  "engines": {
+    "node": ">4.0.0"
+  },
   "devDependencies": {
-    "chai": "^4.0.0",
-    "chalk": "^1.1.1",
-    "gulp": "^3.9.0",
-    "gulp-coveralls": "^0.1.4",
-    "gulp-istanbul": "^1.1.1",
-    "gulp-mocha": "^4.0.1",
-    "minimist": "^1.2.0"
+    "chai": "~4.0.2",
+    "chalk": "~1.1.1",
+    "coveralls": "~2.13.1",
+    "eslint": "~4.0.0",
+    "istanbul": "~0.4.5",
+    "minimist": "~1.2.0",
+    "mocha": "~3.4.2"
   },
   "dependencies": {
     "event-state": "^1.0.0"
