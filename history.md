@@ -1,4 +1,11 @@
-### - 1.1.1 * 6/19/2017, 1:08:24 PM *
+### - 1.1.2 * 6/27/2017, 9:53:43 PM *
+
+   - Merge pull request #10 from ansble/greenkeeper/eslint-4.1.1
+  - chore(package): update eslint to version 4.1.1
+  - Merge pull request #8 from ansble/feature/modernize-next-tick 
+
+
+ ### - 1.1.1 * 6/19/2017, 1:08:24 PM *
 
   
 
