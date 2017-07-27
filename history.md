@@ -1,4 +1,20 @@
-### - 1.1.2 * 6/27/2017, 9:53:43 PM *
+### - 1.1.3 * 7/27/2017, 8:11:46 AM *
+
+   - Merge pull request #15 from ansble/greenkeeper/eslint-4.3.0
+  - Merge pull request #14 from ansble/greenkeeper/chalk-2.0.1
+  - Merge branch 'master' into greenkeeper/chalk-2.0.1
+  - Merge pull request #13 from ansble/greenkeeper/chai-4.1.0
+  - chore(package): update eslint to version 4.3.0
+  - chore(package): update chai to version 4.1.0
+  - chore(package): update chalk to version 2.0.1
+  - 1.1.2
+  - preparing for release of v1.1.2
+  - Merge pull request #10 from ansble/greenkeeper/eslint-4.1.1
+  - chore(package): update eslint to version 4.1.1
+  - Merge pull request #8 from ansble/feature/modernize-next-tick 
+
+
+ ### - 1.1.2 * 6/27/2017, 9:53:43 PM *
 
    - Merge pull request #10 from ansble/greenkeeper/eslint-4.1.1
   - chore(package): update eslint to version 4.1.1
