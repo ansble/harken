@@ -16,7 +16,7 @@ module.exports = {
   , once: (eventNameIn, handlerIn, scopeIn) => {
     // same thing as .on() but is only triggered once
     if (typeof eventNameIn === 'object') {
-      eventNameIn.once = true;
+      eventNameIn.once = true; // eslint-disable-line no-param-reassign
       on(eventNameIn);
     } else {
       on({

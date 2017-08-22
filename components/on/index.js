@@ -4,7 +4,7 @@ const eventStore = require('../store')
       , emptyScope = {}
       , compare = require('../compare')
 
-      , getEventSettings = (eventNameIn, handlerIn, scopeIn, onceIn) => {
+      , getEventSettings = (eventNameIn, handlerIn, scopeIn, onceIn) => { // eslint-disable-line max-params
         // attribute holders and such
         const scope = scopeIn || emptyScope
               , once = onceIn || false
@@ -18,7 +18,7 @@ const eventStore = require('../store')
         };
       }
 
-      , on = (eventNameIn, handlerIn, scopeIn, onceIn) => {
+      , on = (eventNameIn, handlerIn, scopeIn, onceIn) => { // eslint-disable-line max-params
         const eventSettings = getEventSettings(eventNameIn, handlerIn, scopeIn, onceIn)
               , eventStack = eventStore[eventSettings.name];
 

@@ -28,7 +28,7 @@ describe('on::tests', () => {
     assert.strictEqual(eventStore['some-event'].length, 1);
   });
 
-  it('should allow an object with named keys instead of function params for just once and handler', () => {
+  it('allows an object with named keys instead of function params for once and handler', () => {
     assert.strictEqual(eventStore['some-event'].length, 0);
 
     subject({
@@ -40,7 +40,7 @@ describe('on::tests', () => {
     assert.strictEqual(eventStore['some-event'].length, 1);
   });
 
-  it('should allow an object with named keys instead of function params for just handler', () => {
+  it('should allow an object with named keys instead of function params for handler', () => {
     assert.strictEqual(eventStore['some-event'].length, 0);
 
     subject({

@@ -62,7 +62,7 @@ describe('emit::tests', () => {
     }, 0);
   });
 
-  it('should execute remove "once" and expired listeners for a given event after executing', (done) => {
+  it('should remove "once" and expired listeners for a given event after executing', (done) => {
     subject('test-event', 1);
 
     setTimeout(() => {

@@ -39,7 +39,7 @@ describe('Event Tests', () => {
       emitter.emit('some-event');
     });
 
-    it('should execute the callback passed to "on" when an event is triggered and recieve data', (done) => {
+    it('executes the callback passed to "on" when an event triggers and recieves data', (done) => {
       emitter.on('some-event', (data) => {
         assert.isObject(data);
         done();
@@ -58,7 +58,7 @@ describe('Event Tests', () => {
       emitter.emit('some-event', { name: 'Tom Sawyer' });
     });
 
-    it('should execute the callback passed to "on" with the scope passed only once when flagged', (done) => {
+    it('executes the callback passed to "on" with the scope passed only once when once', (done) => {
       let count = 0;
 
       emitter.on('some-event', () => {
@@ -101,7 +101,7 @@ describe('Event Tests', () => {
       emitter.emit('some-other-event');
     });
 
-    it('should allow an object with named keys instead of function params for just once and handler', (done) => {
+    it('allows an object with keys instead of function params for once and handler', (done) => {
       let count = 0;
 
       emitter.on({
@@ -124,7 +124,7 @@ describe('Event Tests', () => {
       emitter.emit('some-other-event');
     });
 
-    it('should allow an object with named keys instead of function params for just handler', (done) => {
+    it('should allow an object with named keys instead of function params for handler', (done) => {
       let count = 0;
 
       emitter.on({
@@ -151,7 +151,7 @@ describe('Event Tests', () => {
       assert.isFunction(emitter.once);
     });
 
-    it('should add an item to the eventStore with once set when called with positional params', () => {
+    it('should add an item to the eventStore with once set when called with params', () => {
       emitter.once('test', () => {}, {});
 
       assert.strictEqual(eventStore.test.length, 1);

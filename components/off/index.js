@@ -3,7 +3,7 @@
 const eventStore = require('../store')
       , compare = require('../compare')
 
-      , off = (eventNameIn, handlerIn, onceIn, scopeIn) => {
+      , off = (eventNameIn, handlerIn, onceIn, scopeIn) => { // eslint-disable-line max-params
         // localize variables
         let eventName = eventNameIn
             , handler = handlerIn
