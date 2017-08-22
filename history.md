@@ -1,4 +1,10 @@
-### - 1.1.4 * 8/17/2017, 9:33:51 PM *
+### - 1.1.5 * 8/21/2017, 10:01:44 PM *
+
+   - Merge pull request #20 from ansble/greenkeeper/eslint-4.5.0
+  - chore(package): update eslint to version 4.5.0 
+
+
+ ### - 1.1.4 * 8/17/2017, 9:33:51 PM *
 
    - Merge pull request #16 from ansble/greenkeeper/mocha-3.5.0
   - Merge pull request #18 from ansble/greenkeeper/chalk-2.1.0
