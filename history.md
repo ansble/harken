@@ -1,4 +1,9 @@
-### - 1.1.5 * 8/21/2017, 10:01:44 PM *
+### - 1.2.0 * 8/21/2017, 10:26:55 PM *
+
+   - Adds a flush option that wipes out all of the listeners 
+
+
+ ### - 1.1.5 * 8/21/2017, 10:01:44 PM *
 
    - Merge pull request #20 from ansble/greenkeeper/eslint-4.5.0
   - chore(package): update eslint to version 4.5.0 
