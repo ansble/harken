@@ -1,4 +1,10 @@
-### - 1.2.1 * 9/4/2017, 8:37:04 PM *
+### - 1.2.2 * 9/18/2017, 7:47:21 PM *
+
+   - Merge pull request #24 from ansble/greenkeeper/eslint-4.7.1
+  - chore(package): update eslint to version 4.7.1 
+
+
+ ### - 1.2.1 * 9/4/2017, 8:37:04 PM *
 
    - Merge pull request #22 from ansble/greenkeeper/eslint-4.6.1
   - chore(package): update eslint to version 4.6.1 
