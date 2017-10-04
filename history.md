@@ -1,4 +1,15 @@
-### - 1.2.2 * 9/18/2017, 7:47:21 PM *
+### - 1.2.3 * 10/4/2017, 6:34:42 AM *
+
+   - Merge pull request #25 from ansble/greenkeeper/coveralls-3.0.0
+  - Merge branch 'master' into greenkeeper/coveralls-3.0.0
+  - Merge pull request #26 from ansble/greenkeeper/eslint-4.8.0
+  - Merge pull request #27 from ansble/greenkeeper/mocha-4.0.0
+  - chore(package): update mocha to version 4.0.0
+  - chore(package): update eslint to version 4.8.0
+  - chore(package): update coveralls to version 3.0.0 
+
+
+ ### - 1.2.2 * 9/18/2017, 7:47:21 PM *
 
    - Merge pull request #24 from ansble/greenkeeper/eslint-4.7.1
   - chore(package): update eslint to version 4.7.1 
