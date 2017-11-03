@@ -1,4 +1,9 @@
-### - 1.2.4 * 11/3/2017, 6:27:38 AM *
+### - 1.2.5 * 11/3/2017, 6:28:03 AM *
+
+  
+
+
+ ### - 1.2.4 * 11/3/2017, 6:27:38 AM *
 
    - Merge pull request #31 from ansble/greenkeeper/chalk-2.3.0
   - Merge pull request #30 from ansble/greenkeeper/eslint-4.10.0
