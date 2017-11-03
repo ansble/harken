@@ -1,4 +1,12 @@
-### - 1.2.3 * 10/4/2017, 6:34:42 AM *
+### - 1.2.4 * 11/3/2017, 6:27:38 AM *
+
+   - Merge pull request #31 from ansble/greenkeeper/chalk-2.3.0
+  - Merge pull request #30 from ansble/greenkeeper/eslint-4.10.0
+  - chore(package): update eslint to version 4.10.0
+  - chore(package): update chalk to version 2.3.0 
+
+
+ ### - 1.2.3 * 10/4/2017, 6:34:42 AM *
 
    - Merge pull request #25 from ansble/greenkeeper/coveralls-3.0.0
   - Merge branch 'master' into greenkeeper/coveralls-3.0.0
