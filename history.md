@@ -1,4 +1,19 @@
-### - 1.2.5 * 11/3/2017, 6:28:03 AM *
+### - 1.2.6 * 2017-12-5 05:35:39 *
+
+   - Merge pull request #33 from ansble/greenkeeper/eslint-4.12.1
+  - chore(package): update eslint to version 4.12.1
+  - removed npm debug log
+  - 1.2.5
+  - preparing for release of v1.2.5
+  - 1.2.4
+  - preparing for release of v1.2.4
+  - Merge pull request #31 from ansble/greenkeeper/chalk-2.3.0
+  - Merge pull request #30 from ansble/greenkeeper/eslint-4.10.0
+  - chore(package): update eslint to version 4.10.0
+  - chore(package): update chalk to version 2.3.0 
+
+
+ ### - 1.2.5 * 11/3/2017, 6:28:03 AM *
 
   
 
