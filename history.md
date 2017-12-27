@@ -1,4 +1,10 @@
-### - 1.2.7 * 2017-12-11 06:40:16 *
+### - 1.2.8 * 2017-12-27 07:36:31 *
+
+   - Merge pull request #35 from ansble/greenkeeper/eslint-4.14.0
+  - chore(package): update eslint to version 4.14.0 
+
+
+ ### - 1.2.7 * 2017-12-11 06:40:16 *
 
    - added lock file
   - Merge pull request #34 from ansble/greenkeeper/eslint-4.13.0
