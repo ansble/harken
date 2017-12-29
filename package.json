@@ -35,7 +35,7 @@
     "eslint": "~4.14.0",
     "istanbul": "~0.4.5",
     "minimist": "~1.2.0",
-    "mocha": "~4.0.0"
+    "mocha": "~4.1.0"
   },
   "dependencies": {
     "event-state": "^1.0.0"
