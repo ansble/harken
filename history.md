@@ -1,4 +1,77 @@
-### - 1.2.9 * 2018-1-2 07:32:41 *
+### - 1.2.10 * 2018-1-8 14:34:19 *
+
+   - Merge pull request #37 from ansble/greenkeeper/eslint-4.15.0
+  - chore(package): update eslint to version 4.15.0
+  - 1.2.9
+  - preparing for release of v1.2.9
+  - Merge pull request #36 from ansble/greenkeeper/mocha-4.1.0
+  - chore(package): update mocha to version 4.1.0
+  - 1.2.8
+  - preparing for release of v1.2.8
+  - Merge pull request #35 from ansble/greenkeeper/eslint-4.14.0
+  - chore(package): update eslint to version 4.14.0
+  - 1.2.7
+  - preparing for release of v1.2.7
+  - added lock file
+  - Merge pull request #34 from ansble/greenkeeper/eslint-4.13.0
+  - chore(package): update eslint to version 4.13.0
+  - 1.2.6
+  - preparing for release of v1.2.6
+  - Merge pull request #33 from ansble/greenkeeper/eslint-4.12.1
+  - chore(package): update eslint to version 4.12.1
+  - removed npm debug log
+  - 1.2.5
+  - preparing for release of v1.2.5
+  - 1.2.4
+  - preparing for release of v1.2.4
+  - Merge pull request #31 from ansble/greenkeeper/chalk-2.3.0
+  - Merge pull request #30 from ansble/greenkeeper/eslint-4.10.0
+  - chore(package): update eslint to version 4.10.0
+  - chore(package): update chalk to version 2.3.0
+  - 1.2.3
+  - preparing for release of v1.2.3
+  - Merge pull request #25 from ansble/greenkeeper/coveralls-3.0.0
+  - Merge branch 'master' into greenkeeper/coveralls-3.0.0
+  - Merge pull request #26 from ansble/greenkeeper/eslint-4.8.0
+  - Merge pull request #27 from ansble/greenkeeper/mocha-4.0.0
+  - chore(package): update mocha to version 4.0.0
+  - chore(package): update eslint to version 4.8.0
+  - chore(package): update coveralls to version 3.0.0
+  - 1.2.2
+  - preparing for release of v1.2.2
+  - Merge pull request #24 from ansble/greenkeeper/eslint-4.7.1
+  - chore(package): update eslint to version 4.7.1
+  - 1.2.1
+  - preparing for release of v1.2.1
+  - Merge pull request #22 from ansble/greenkeeper/eslint-4.6.1
+  - chore(package): update eslint to version 4.6.1
+  - 1.2.0
+  - preparing for release of v1.2.0
+  - Adds a flush option that wipes out all of the listeners
+  - 1.1.5
+  - preparing for release of v1.1.5
+  - Merge pull request #20 from ansble/greenkeeper/eslint-4.5.0
+  - chore(package): update eslint to version 4.5.0
+  - 1.1.4
+  - preparing for release of v1.1.4
+  - Merge pull request #16 from ansble/greenkeeper/mocha-3.5.0
+  - Merge pull request #18 from ansble/greenkeeper/chalk-2.1.0
+  - Merge pull request #19 from ansble/greenkeeper/eslint-4.4.1
+  - chore(package): update eslint to version 4.4.1
+  - chore(package): update chalk to version 2.1.0
+  - chore(package): update mocha to version 3.5.0
+  - 1.1.3
+  - preparing for release of v1.1.3
+  - Merge pull request #15 from ansble/greenkeeper/eslint-4.3.0
+  - Merge pull request #14 from ansble/greenkeeper/chalk-2.0.1
+  - Merge branch 'master' into greenkeeper/chalk-2.0.1
+  - Merge pull request #13 from ansble/greenkeeper/chai-4.1.0
+  - chore(package): update eslint to version 4.3.0
+  - chore(package): update chai to version 4.1.0
+  - chore(package): update chalk to version 2.0.1 
+
+
+ ### - 1.2.9 * 2018-1-2 07:32:41 *
 
    - Merge pull request #36 from ansble/greenkeeper/mocha-4.1.0
   - chore(package): update mocha to version 4.1.0 
