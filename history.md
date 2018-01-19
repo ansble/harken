@@ -1,4 +1,10 @@
-### - 1.2.10 * 2018-1-8 14:34:19 *
+### - 1.2.11 * 2018-1-19 09:13:16 *
+
+   - Merge pull request #38 from ansble/greenkeeper/mocha-5.0.0
+  - chore(package): update mocha to version 5.0.0 
+
+
+ ### - 1.2.10 * 2018-1-8 14:34:19 *
 
    - Merge pull request #37 from ansble/greenkeeper/eslint-4.15.0
   - chore(package): update eslint to version 4.15.0
