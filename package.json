@@ -1,6 +1,6 @@
 {
   "name": "harken",
-  "version": "1.2.14",
+  "version": "1.2.15",
   "description": "a simple event library",
   "main": "index.js",
   "scripts": {
