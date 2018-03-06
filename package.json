@@ -8,7 +8,7 @@
     "test": "npm run lint && istanbul cover _mocha -- *.test.js bin/*.test.js components/**/*.test.js",
     "codeship": "npm test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "lint": "bin/lint.js",
-    "release": "npm test && echo ' => releasing' && bin/release.js"
+    "release": "npm test && echo ' => releasing' && tom"
   },
   "repository": {
     "type": "git",
@@ -29,13 +29,14 @@
     "node": ">4.0.0"
   },
   "devDependencies": {
-    "chalk": "~2.3.0",
     "chai": "~4.1.0",
+    "chalk": "~2.3.0",
     "coveralls": "~3.0.0",
     "eslint": "~4.18.1",
     "istanbul": "~0.4.5",
     "minimist": "~1.2.0",
-    "mocha": "~5.0.0"
+    "mocha": "~5.0.0",
+    "tom-sawyer": "^0.1.4"
   },
   "dependencies": {
     "event-state": "^1.0.0"
