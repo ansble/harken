@@ -1,4 +1,10 @@
-### - 1.2.15 * 2018-3-5 20:19:10 *
+### - 1.2.16 * 2018-3-16 21:36:23 *
+
+   - Merge pull request #43 from ansble/greenkeeper/eslint-4.19.0
+  - chore(package): update eslint to version 4.19.0 
+
+
+ ### - 1.2.15 * 2018-3-5 20:19:10 *
 
    - removes release script and replaces with tom-sawyer 
 
