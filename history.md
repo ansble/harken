@@ -1,4 +1,29 @@
-### - 1.2.16 * 2018-3-16 21:36:23 *
+### - 1.2.17 * 2018-4-16 13:16:11 *
+
+   - Merge pull request #44 from ansble/greenkeeper/mocha-5.1.0
+  - chore(package): update mocha to version 5.1.0
+  - 1.2.16
+  - preparing for release of v1.2.16
+  - Merge pull request #43 from ansble/greenkeeper/eslint-4.19.0
+  - chore(package): update eslint to version 4.19.0
+  - 1.2.15
+  - preparing for release of v1.2.15
+  - removes release script and replaces with tom-sawyer
+  - 1.2.14
+  - preparing for release of v1.2.14
+  - Merge pull request #42 from ansble/greenkeeper/eslint-4.18.1
+  - chore(package): update eslint to version 4.18.1
+  - 1.2.13
+  - preparing for release of v1.2.13
+  - Merge pull request #40 from ansble/greenkeeper/eslint-4.17.0
+  - chore(package): update eslint to version 4.17.0
+  - 1.2.12
+  - preparing for release of v1.2.12
+  - Merge pull request #39 from ansble/greenkeeper/eslint-4.16.0
+  - chore(package): update eslint to version 4.16.0 
+
+
+ ### - 1.2.16 * 2018-3-16 21:36:23 *
 
    - Merge pull request #43 from ansble/greenkeeper/eslint-4.19.0
   - chore(package): update eslint to version 4.19.0 
