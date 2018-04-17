@@ -1,4 +1,10 @@
-### - 1.2.17 * 2018-4-16 13:16:11 *
+### - 1.2.18 * 2018-4-17 10:01:37 *
+
+   - Merge pull request #45 from ansble/greenkeeper/chalk-2.4.0
+  - chore(package): update chalk to version 2.4.0 
+
+
+ ### - 1.2.17 * 2018-4-16 13:16:11 *
 
    - Merge pull request #44 from ansble/greenkeeper/mocha-5.1.0
   - chore(package): update mocha to version 5.1.0
