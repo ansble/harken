@@ -36,7 +36,7 @@
     "istanbul": "~0.4.5",
     "minimist": "~1.2.0",
     "mocha": "~5.2.0",
-    "tom-sawyer": "^0.1.4"
+    "tom-sawyer": "^0.2.0"
   },
   "dependencies": {
     "event-state": "^1.0.0"
