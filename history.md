@@ -1,4 +1,16 @@
-### - 1.2.19 * 2018-5-23 19:46:30 *
+### - 1.2.20 * 10/30/2019, 6:06:13 AM *
+
+ - Merge pull request #50 from ansble/greenkeeper/tom-sawyer-0.3.0
+  - update some more deps
+  - Merge pull request #51 from ansble/greenkeeper/mocha-6.2.2
+  - updated lock file
+  - chore(package): update lockfile package-lock.json
+  - chore(package): update mocha to version 6.2.2
+  - chore(package): update lockfile package-lock.json
+  - chore(package): update tom-sawyer to version 0.3.0 
+
+
+ ### - 1.2.19 * 2018-5-23 19:46:30 *
 
    - Merge pull request #46 from ansble/greenkeeper/mocha-5.2.0
   - chore(package): update mocha to version 5.2.0 
