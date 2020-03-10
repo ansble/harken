@@ -34,7 +34,7 @@
     "coveralls": "~3.0.0",
     "eslint": "~4.19.0",
     "istanbul": "~0.4.5",
-    "minimist": "~1.2.0",
+    "minimist": "1.2.0",
     "mocha": "~6.2.2",
     "tom-sawyer": "^0.3.0"
   },
